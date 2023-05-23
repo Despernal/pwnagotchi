@@ -304,42 +304,42 @@
       remote_src: yes
       mode: 0755
 
-  - name: clone nexmon-pi-zero-2w repository
-    git:
-      repo: https://github.com/aluminum-ice/nexmon-pi-zero-2w.git
-      dest: /usr/local/src/nexmon-pi-zero-2w
-    register: nexmongit
+  # - name: clone nexmon-pi-zero-2w repository
+  #   git:
+  #     repo: https://github.com/aluminum-ice/nexmon-pi-zero-2w.git
+  #     dest: /usr/local/src/nexmon-pi-zero-2w
+  #   register: nexmongit
 
-  - name: Execute deployment script
-    command: chdir=/usr/local/src/nexmon-pi-zero-2w/bin ./deploy.sh
+  # - name: Execute deployment script
+  #   command: chdir=/usr/local/src/nexmon-pi-zero-2w/bin ./deploy.sh
 
-  - name: Delete nexmon-pi-zero-2w content & directory
-    file:
-      state: absent
-      path: /usr/local/src/nexmon-pi-zero-2w
-    when: nexmongit.changed
+  # - name: Delete nexmon-pi-zero-2w content & directory
+  #   file:
+  #     state: absent
+  #     path: /usr/local/src/nexmon-pi-zero-2w
+  #   when: nexmongit.changed
 
   # Install screenrc configuration
-  - name: clone screenrc repository
-    git:
-      repo: https://github.com/aluminum-ice/screenrc.git
-      dest: /usr/local/src/screenrc
-    register: screenrcgit
+  # - name: clone screenrc repository
+  #   git:
+  #     repo: https://github.com/aluminum-ice/screenrc.git
+  #     dest: /usr/local/src/screenrc
+  #   register: screenrcgit
 
-  - name: create /home/pi/.screenrc
-    copy:
-      src: /usr/local/src/screenrc/.screenrc
-      dest: /home/pi/.screenrc
-      owner: pi
-      group: pi
-      mode: '0644'
-    when: screenrcgit.changed
+  # - name: create /home/pi/.screenrc
+  #   copy:
+  #     src: /usr/local/src/screenrc/.screenrc
+  #     dest: /home/pi/.screenrc
+  #     owner: pi
+  #     group: pi
+  #     mode: '0644'
+  #   when: screenrcgit.changed
 
-  - name: Delete screenrc content & directory
-    file:
-      state: absent
-      path: /usr/local/src/screenrc/
-    when: screenrcgit.changed
+  # - name: Delete screenrc content & directory
+  #   file:
+  #     state: absent
+  #     path: /usr/local/src/screenrc/
+  #   when: screenrcgit.changed
 
   - name: Add pwnlog alias
     lineinfile:
